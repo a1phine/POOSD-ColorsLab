@@ -1,0 +1,14 @@
+# Database & Config files with credentials
+LAMPAPI/db_config.php
+config.php
+*.env
+
+# Server & OS files
+.DS_Store
+Thumbs.db
+*.log
+*.tmp
+
+# IDE / Editor files
+.vscode/
+.idea/
