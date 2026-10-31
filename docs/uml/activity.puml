@@ -1,0 +1,39 @@
+@startuml
+title Activity Diagram - Colors Web Application
+
+start
+:Open Application;
+
+repeat
+    :Enter Username and Password;
+    :Send login request;
+    
+    if (Authentication successful?) then (yes)
+        :Load User Colors;
+        
+        repeat
+            :Display Color Dashboard;
+            
+            switch (Select operation)
+            case (Add)
+                :Enter color details;
+                :Save color to database;
+            case (Search)
+                :Enter search term;
+                :Query database for matching colors;
+            endswitch
+            
+        repeat while (User managing colors?) is (yes)
+        -> no;
+        
+        :Logout;
+        stop
+        
+    else (no)
+        :Show login error;
+    endif
+    
+repeat while (Try again?) is (yes)
+-> no;
+stop
+@enduml
