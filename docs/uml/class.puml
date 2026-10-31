@@ -1,0 +1,44 @@
+@startuml
+title Class Diagram - Colors Web Application
+
+class User {
+  - ID : int
+  - FirstName : varchar(50)
+  - LastName : varchar(50)
+  - Login : varchar(50)
+  - Password : varchar(50)
+}
+
+class Color {
+  - ID : int
+  - Name : varchar(50)
+  - UserID : int
+}
+
+class FrontendJS {
+  - urlBase : string
+  - userId : int
+  - firstName : string
+  - lastName : string
+  + doLogin() : void
+  + doLogout() : void
+  + addColor() : void
+  + searchColor() : void
+  + saveCookie() : void
+  + readCookie() : void
+}
+
+class LAMPAPI {
+  + Login() : JSON
+  + AddColor() : JSON
+  + SearchColors() : JSON
+  - getRequestInfo() : array
+  - sendResultInfoAsJson(obj: string) : void
+  - returnWithError(err: string) : void
+}
+
+User "1" -- "0..*" Color : manages >
+FrontendJS --> LAMPAPI : HTTP POST (JSON)
+LAMPAPI --> User : authenticates
+LAMPAPI --> Color : queries/inserts
+@enduml
